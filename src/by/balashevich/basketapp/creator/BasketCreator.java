@@ -1,17 +1,24 @@
 package by.balashevich.basketapp.creator;
 
 import by.balashevich.basketapp.entity.Basket;
-import by.balashevich.basketapp.exception.ProjectInvalidDataException;
-import by.balashevich.basketapp.validator.EntityValidator;
+import by.balashevich.basketapp.parser.EntityParser;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class BasketCreator {
+    private final String REGEX_BASKET = "basket,\\s\\d+\\.?\\d+,\\s\\d+\\.?\\d+";
 
-    public Basket createBasket(double basketVolume, double basketPayload) throws ProjectInvalidDataException {
-        EntityValidator entityValidator = new EntityValidator();
-        if (!entityValidator.validateBasket(basketVolume, basketPayload)) {
-            throw new ProjectInvalidDataException("Invalid data while creating Basket");
+    public List<Basket> parseBasketsList(List<String> basketsLinesData) {
+        EntityParser entityParser = new EntityParser();
+        List<Basket> basketList = new ArrayList<>();
+
+        for (String dataLine : basketsLinesData) {
+            if (dataLine.matches(REGEX_BASKET)) {
+                basketList.add(entityParser.parseBasket(dataLine));
+            }
         }
 
-        return new Basket(basketVolume, basketPayload);
+        return basketList;
     }
 }

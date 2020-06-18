@@ -1,46 +1,34 @@
 package by.balashevich.basketapp.parser;
 
+import by.balashevich.basketapp.entity.Ball;
 import by.balashevich.basketapp.entity.BallSize;
+import by.balashevich.basketapp.entity.Basket;
 import by.balashevich.basketapp.entity.ItemColor;
-import by.balashevich.basketapp.validator.EntityFilter;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class EntityParser {
+    private final String REGEX_SPLITTER = ",";
+    private final int BALL_COLOR_INDEX = 1;
+    private final int BALL_SIZE_INDEX = 2;
+    private final int BALL_WEIGHT_INDEX = 3;
+    private final int BASKET_VOLUME_INDEX = 1;
+    private final int BASKET_PAYLOAD_INDEX = 2;
 
-    public List<List> parseBaskets(List<String> inputData) {
-        EntityFilter entityFilter = new EntityFilter();
-        List<List> basketDataList = new ArrayList<List>();
+    public Ball parseBall(String ballData) {
+        String[] elements = ballData.split(REGEX_SPLITTER);
 
-        for (String dataLine : inputData) {
-            if (entityFilter.filterBasket(dataLine)) {
-                String[] basketDataElements = dataLine.split(",");
-                List basketElements = new ArrayList();
-                basketElements.add(Double.parseDouble(basketDataElements[1].trim()));
-                basketElements.add(Double.parseDouble(basketDataElements[2].trim()));
-                basketDataList.add(basketElements);
-            }
-        }
+        ItemColor ballColor = ItemColor.valueOf(elements[BALL_COLOR_INDEX].trim());
+        BallSize ballSize = BallSize.valueOf(elements[BALL_SIZE_INDEX].trim());
+        double ballWeight = Double.parseDouble(elements[BALL_WEIGHT_INDEX].trim());
 
-        return basketDataList;
+        return new Ball(ballColor, ballSize, ballWeight);
     }
 
-    public List<List> parseBalls(List<String> inputData) {
-        EntityFilter entityFilter = new EntityFilter();
-        List<List> ballDataList = new ArrayList<List>();
+    public Basket parseBasket(String basketData) {
+        String[] elements = basketData.split(REGEX_SPLITTER);
 
-        for (String dataLine : inputData) {
-            if (entityFilter.filterBall(dataLine)) {
-                String[] ballsDataElements = dataLine.split(",");
-                List ballElements = new ArrayList();
-                ballElements.add(ItemColor.valueOf(ballsDataElements[1].trim()));
-                ballElements.add(BallSize.valueOf(ballsDataElements[2].trim()));
-                ballElements.add(Double.parseDouble(ballsDataElements[3].trim()));
-                ballDataList.add(ballElements);
-            }
-        }
+        double basketVolume = Double.parseDouble(elements[BASKET_VOLUME_INDEX]);
+        double basketPayload = Double.parseDouble(elements[BASKET_PAYLOAD_INDEX]);
 
-        return ballDataList;
+        return new Basket(basketVolume, basketPayload);
     }
 }

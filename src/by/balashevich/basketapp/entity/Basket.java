@@ -36,11 +36,8 @@ public class Basket {
     }
 
     public List<Ball> getBalls() {
-        return balls;
-    }
-
-    public void setBalls(List<Ball> balls) {
-        this.balls = balls;
+        List<Ball> ballsCopy = new ArrayList<>(balls);
+        return ballsCopy;
     }
 
     public void addBall(Ball ball) {
