@@ -1,16 +1,17 @@
 package by.balashevich.basketapp.entity;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Basket {
-    public static final double MINIMUM_VOLUME = 50;
-    public static final double MAXIMUM_VOLUME = 700;
-    public static final double MINIMUM_PAYLOAD = 3;
-    public static final double MAXIMUM_PAYLOAD = 50;
+    public static final double MIN_VOLUME = 50;
+    public static final double MAX_VOLUME = 700;
+    public static final double MIN_PAYLOAD = 3;
+    public static final double MAX_PAYLOAD = 50;
 
-    private double volume;
-    private double payload;
+    private final double volume;
+    private final double payload;
     private List<Ball> balls;
 
     public Basket(double volume, double payload) {
@@ -23,21 +24,12 @@ public class Basket {
         return volume;
     }
 
-    public void setVolume(double volume) {
-        this.volume = volume;
-    }
-
     public double getPayload() {
         return payload;
     }
 
-    public void setPayload(double payload) {
-        this.payload = payload;
-    }
-
     public List<Ball> getBalls() {
-        List<Ball> ballsCopy = new ArrayList<>(balls);
-        return ballsCopy;
+        return Collections.unmodifiableList(balls);
     }
 
     public void addBall(Ball ball) {

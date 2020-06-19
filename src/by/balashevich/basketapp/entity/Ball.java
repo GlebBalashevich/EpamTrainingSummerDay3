@@ -1,8 +1,8 @@
 package by.balashevich.basketapp.entity;
 
 public class Ball {
-    public static final double MAX_WEIGHT = 3;
     public static final double MIN_WEIGHT = 0.5;
+    public static final double MAX_WEIGHT = 3;
 
     private ItemColor color;
     private BallSize size;
@@ -58,7 +58,6 @@ public class Ball {
         result = 17 * result + (color == null ? 0 : color.hashCode());
         result = 17 * result + (size == null ? 0 : size.hashCode());
         result = 17 * result + (int) weight;
-
         return result;
     }
 

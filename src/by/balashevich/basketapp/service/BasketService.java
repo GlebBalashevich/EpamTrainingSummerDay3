@@ -8,7 +8,7 @@ import java.util.List;
 
 public class BasketService {
 
-    public double countBallsWeight(Basket basket) {
+    public double calculateBallsWeight(Basket basket) {
         double weight = 0;
 
         if (basket != null) {
@@ -17,14 +17,14 @@ public class BasketService {
                     weight += ball.getWeight();
                 }
             }
-        } else{
+        } else {
             weight = -1;
         }
 
         return weight;
     }
 
-    public int countSameColorBalls(Basket basket, ItemColor ballColor) {
+    public int calculateSameColorBalls(Basket basket, ItemColor ballColor) {
         int count = 0;
 
         if (basket != null) {
@@ -35,39 +35,74 @@ public class BasketService {
                     }
                 }
             }
-        } else{
+        } else {
             count = -1;
         }
 
         return count;
     }
 
-    public void loadBasket(Basket basket, List<Ball> ballsArray) {
-        double filledPayload = 0;
-        double filledVolume = 0;
-        double availablePayload = basket.getPayload();
-        double availableVolume = basket.getVolume();
+    public double calculateBasketFreeVolume(Basket basket) {
+        double availableVolume = 0;
 
-        for (Ball lyingBall : basket.getBalls()) {
-            if (lyingBall != null) {
-                filledPayload += lyingBall.getWeight();
-                filledVolume += lyingBall.getSize().getVolume();
-            }
-        }
+        if (basket != null) {
+            availableVolume = basket.getVolume();
+            List<Ball> balls = basket.getBalls();
 
-        availablePayload -= filledPayload;
-        availableVolume -= filledVolume;
-
-        for (Ball ball : ballsArray) {
-            if (ball != null) {
-                if (ball.getWeight() <= availablePayload) {
-                    if (ball.getSize().getVolume() <= availableVolume) {
-                        basket.addBall(ball);
-                        availablePayload -= ball.getWeight();
-                        availableVolume -= ball.getSize().getVolume();
+            if (balls != null) {
+                for (Ball lyingBall : balls) {
+                    if (lyingBall != null) {
+                        availableVolume -= lyingBall.getSize().getVolume();
                     }
                 }
             }
         }
+
+        return availableVolume;
+    }
+
+    public double calculateBasketFreePayload(Basket basket) {
+        double availablePayload = 0;
+
+        if (basket != null) {
+            availablePayload = basket.getPayload();
+            List<Ball> balls = basket.getBalls();
+
+            if (balls != null) {
+                for (Ball lyingBall : balls) {
+                    if (lyingBall != null) {
+                        availablePayload -= lyingBall.getWeight();
+                    }
+                }
+            }
+        }
+
+        return availablePayload;
+    }
+
+    public int loadBasket(Basket basket, List<Ball> ballsArray) {
+        int numberPlacedBalls = 0;
+        double availableVolume = 0;
+        double availablePayload = 0;
+
+        if (basket != null) {
+            availableVolume = calculateBasketFreeVolume(basket);
+            availablePayload = calculateBasketFreePayload(basket);
+
+            for (Ball ball : ballsArray) {
+                if (ball != null) {
+                    if (ball.getWeight() <= availablePayload) {
+                        if (ball.getSize().getVolume() <= availableVolume) {
+                            basket.addBall(ball);
+                            availablePayload -= ball.getWeight();
+                            availableVolume -= ball.getSize().getVolume();
+                            numberPlacedBalls++;
+                        }
+                    }
+                }
+            }
+        }
+
+        return numberPlacedBalls;
     }
 }

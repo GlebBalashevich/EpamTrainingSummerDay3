@@ -6,12 +6,12 @@ import by.balashevich.basketapp.entity.Basket;
 import by.balashevich.basketapp.entity.ItemColor;
 
 public class EntityParser {
-    private final String REGEX_SPLITTER = ",";
-    private final int BALL_COLOR_INDEX = 1;
-    private final int BALL_SIZE_INDEX = 2;
-    private final int BALL_WEIGHT_INDEX = 3;
-    private final int BASKET_VOLUME_INDEX = 1;
-    private final int BASKET_PAYLOAD_INDEX = 2;
+    private static final String REGEX_SPLITTER = ",";
+    private static final int BALL_COLOR_INDEX = 1;
+    private static final int BALL_SIZE_INDEX = 2;
+    private static final int BALL_WEIGHT_INDEX = 3;
+    private static final int BASKET_VOLUME_INDEX = 1;
+    private static final int BASKET_PAYLOAD_INDEX = 2;
 
     public Ball parseBall(String ballData) {
         String[] elements = ballData.split(REGEX_SPLITTER);

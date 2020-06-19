@@ -7,11 +7,12 @@ import static org.testng.Assert.*;
 public class BasketServiceTest {
 
     @Test
-    public void testCountBallsWeight() {
+    public void testCalculateBallsWeight() {
+
     }
 
     @Test
-    public void testCountSameColorBalls() {
+    public void testCalculateSameColorBalls() {
     }
 
     @Test

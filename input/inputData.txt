@@ -1,8 +1,8 @@
-basket, 800, 400
-basket, 350, 180
-ball, RED, XL, 56
-ball, GREEN, L, 35
-ball, BLUE, M, 20
-ball, BLUE, S, 15
-ball, BROWN, XL, 88
-ball, BLUE, XL, 84
+basket, 600, 47
+basket, 350, 14
+ball, RED, XL, 2.9
+ball, GREEN, L, 2.3
+ball, BLUE, M, 1.7
+ball, BLUE, S, 0.6
+ball, BROWN, XL, 2.6
+ball, BLUE, XL, 3.0

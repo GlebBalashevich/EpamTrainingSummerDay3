@@ -13,4 +13,8 @@ public class ProjectInvalidDataException extends Exception {
     public ProjectInvalidDataException(String message) {
         super(message);
     }
+
+    public ProjectInvalidDataException(Throwable cause) {
+        super(cause);
+    }
 }
