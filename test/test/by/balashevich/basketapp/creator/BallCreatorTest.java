@@ -19,20 +19,20 @@ public class BallCreatorTest {
     }
 
     @Test(dataProvider = "ballPositiveData", dataProviderClass = CreatorDataProvider.class)
-    public void createBallsListTestPositive(List<String> ballsData, List<Ball> expectedBalls) {
+    public void createBallsListTestPositive(List<String> ballsData, List<Ball> expected) {
         try {
-            List<Ball> actualBalls = ballCreator.createBallsList(ballsData);
-            assertEquals(actualBalls, expectedBalls);
+            List<Ball> actual = ballCreator.createBallsList(ballsData);
+            assertEquals(actual, expected);
         } catch (ProjectInvalidDataException e) {
             fail("exception occurred");
         }
     }
 
     @Test(dataProvider = "ballNegativeData", dataProviderClass = CreatorDataProvider.class)
-    public void createBallsListTestNegative(List<String> ballsData, List<Ball> expectedBalls) {
+    public void createBallsListTestNegative(List<String> ballsData, List<Ball> expected) {
         try {
-            List<Ball> actualBalls = ballCreator.createBallsList(ballsData);
-            assertNotEquals(actualBalls, expectedBalls);
+            List<Ball> actual = ballCreator.createBallsList(ballsData);
+            assertNotEquals(actual, expected);
         } catch (ProjectInvalidDataException e) {
             fail("exception occurred");
         }

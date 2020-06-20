@@ -12,7 +12,9 @@ public class BasketService {
         double weight = 0;
 
         if (basket != null) {
-            for (Ball ball : basket.getBalls()) {
+            List<Ball> balls = basket.getBalls();
+
+            for (Ball ball : balls) {
                 if (ball != null) {
                     weight += ball.getWeight();
                 }
@@ -28,7 +30,9 @@ public class BasketService {
         int count = 0;
 
         if (basket != null) {
-            for (Ball ball : basket.getBalls()) {
+            List<Ball> balls = basket.getBalls();
+
+            for (Ball ball : balls) {
                 if (ball != null) {
                     if (ball.getColor() == ballColor) {
                         count++;
@@ -56,6 +60,8 @@ public class BasketService {
                     }
                 }
             }
+        } else {
+            availableVolume = -1;
         }
 
         return availableVolume;
@@ -75,6 +81,8 @@ public class BasketService {
                     }
                 }
             }
+        } else {
+            availablePayload = -1;
         }
 
         return availablePayload;
@@ -82,8 +90,8 @@ public class BasketService {
 
     public int loadBasket(Basket basket, List<Ball> ballsArray) {
         int numberPlacedBalls = 0;
-        double availableVolume = 0;
-        double availablePayload = 0;
+        double availableVolume;
+        double availablePayload;
 
         if (basket != null) {
             availableVolume = calculateBasketFreeVolume(basket);

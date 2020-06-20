@@ -78,7 +78,6 @@ public class CreatorDataProvider {
         List<String> dataLines3 = new ArrayList<>();
         dataLines3.add("ball, GREEN, L, 1.6");
         dataLines3.add("ball, GREEN, XL, 500");
-
         return new Object[][]{
                 {dataLines1},
                 {dataLines2},
@@ -148,7 +147,6 @@ public class CreatorDataProvider {
         List<String> dataLines4 = new ArrayList<>();
         dataLines4.add("basket, 150, 51");
         dataLines4.add("basket, 150, 30");
-
         return new Object[][]{
                 {dataLines1},
                 {dataLines2},

@@ -31,14 +31,15 @@ public class ItemDataReaderTest {
         expectedLines1.add("ball, BLUE, XL, 3.0");
         return new Object[][]{
                 {"input/inputData.txt", expectedLines1},
-                {"wrongFilePath.txt", expectedLines1}
+                {"wrongFilePath.txt", expectedLines1},
+                {null, expectedLines1},
         };
     }
 
     @Test(dataProvider = "readerDataPositive")
-    public void readAllDataTestPositive(String filename, List<String> expectedLines) {
+    public void readAllDataTestPositive(String filename, List<String> expected) {
         List<String> actualLines = itemDataReader.readAllData(filename);
-        assertEquals(actualLines, expectedLines);
+        assertEquals(actualLines, expected);
     }
 
     @DataProvider(name = "readerDataNegative")
@@ -54,19 +55,19 @@ public class ItemDataReaderTest {
         expectedLines1.add("basket, 600, 47");
         return new Object[][]{
                 {"input/inputData.txt", expectedLines1},
-                {"wrongFilePath.txt", expectedLines1}
+                {"wrongFilePath.txt", expectedLines1},
         };
     }
 
     @Test(dataProvider = "readerDataNegative")
-    public void readAllDataTestNegative(String filename, List<String> expectedLines) {
+    public void readAllDataTestNegative(String filename, List<String> expected) {
         List<String> actualLines = itemDataReader.readAllData(filename);
-        assertNotEquals(actualLines, expectedLines);
+        assertNotEquals(actualLines, expected);
     }
 
     @Test(expectedExceptions = RuntimeException.class)
     public void readAllDataTestException() {
-        List<String> actualLines = itemDataReader.readAllData("out/production/BasketApp/by/" +
+        itemDataReader.readAllData("out/production/BasketApp/by/" +
                 "balashevich/basketapp/creator/BallCreator.class");
     }
 }

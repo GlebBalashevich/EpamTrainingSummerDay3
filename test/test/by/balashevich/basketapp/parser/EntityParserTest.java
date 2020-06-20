@@ -30,8 +30,8 @@ public class EntityParserTest {
     }
 
     @Test(dataProvider = "BallPositiveData")
-    public void parseBallTestPositive(String ballData, Ball expected) {
-        Ball actual = entityParser.parseBall(ballData);
+    public void parseBallTestPositive(String ballsData, Ball expected) {
+        Ball actual = entityParser.parseBall(ballsData);
         assertEquals(actual, expected);
     }
 
@@ -46,8 +46,8 @@ public class EntityParserTest {
     }
 
     @Test(dataProvider = "BallNegativeData")
-    public void parseBallTestNegative(String ballData, Ball expected) {
-        Ball actual = entityParser.parseBall(ballData);
+    public void parseBallTestNegative(String ballsData, Ball expected) {
+        Ball actual = entityParser.parseBall(ballsData);
         assertNotEquals(actual, expected);
     }
 
@@ -61,8 +61,8 @@ public class EntityParserTest {
     }
 
     @Test(dataProvider = "BasketPositiveData")
-    public void parseBasketTestPositive(String basketData, Basket expected) {
-        Basket actual = entityParser.parseBasket(basketData);
+    public void parseBasketTestPositive(String basketsData, Basket expected) {
+        Basket actual = entityParser.parseBasket(basketsData);
         assertEquals(actual, expected);
     }
 
@@ -76,8 +76,8 @@ public class EntityParserTest {
     }
 
     @Test(dataProvider = "BasketNegativeData")
-    public void parseBasketTestNegative(String basketData, Basket expected) {
-        Basket actual = entityParser.parseBasket(basketData);
+    public void parseBasketTestNegative(String basketsData, Basket expected) {
+        Basket actual = entityParser.parseBasket(basketsData);
         assertNotEquals(actual, expected);
     }
 }

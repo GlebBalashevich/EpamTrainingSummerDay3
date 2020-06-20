@@ -19,20 +19,20 @@ public class BasketCreatorTest {
     }
 
     @Test(dataProvider = "basketPositiveData", dataProviderClass = CreatorDataProvider.class)
-    public void createBasketsListTestPositive(List<String> basketsData, List<Basket> expectedBaskets) {
+    public void createBasketsListTestPositive(List<String> basketsData, List<Basket> expected) {
         try {
-            List<Basket> actualBaskets = basketCreator.createBasketsList(basketsData);
-            assertEquals(actualBaskets, expectedBaskets);
+            List<Basket> actual = basketCreator.createBasketsList(basketsData);
+            assertEquals(actual, expected);
         } catch (ProjectInvalidDataException e) {
             fail("exception occurred");
         }
     }
 
     @Test(dataProvider = "basketNegativeData", dataProviderClass = CreatorDataProvider.class)
-    public void createBasketsListTestNegative(List<String> basketsData, List<Basket> expectedBaskets) {
+    public void createBasketsListTestNegative(List<String> basketsData, List<Basket> expected) {
         try {
-            List<Basket> actualBaskets = basketCreator.createBasketsList(basketsData);
-            assertNotEquals(actualBaskets, expectedBaskets);
+            List<Basket> actual = basketCreator.createBasketsList(basketsData);
+            assertNotEquals(actual, expected);
         } catch (ProjectInvalidDataException e) {
             fail("exception occurred");
         }
@@ -40,7 +40,7 @@ public class BasketCreatorTest {
 
     @Test(expectedExceptions = ProjectInvalidDataException.class, dataProvider = "basketExceptionData",
             dataProviderClass = CreatorDataProvider.class)
-    public void createBasketsListTestException(List<String> basketData) throws ProjectInvalidDataException {
-        basketCreator.createBasketsList(basketData);
+    public void createBasketsListTestException(List<String> basketsData) throws ProjectInvalidDataException {
+        basketCreator.createBasketsList(basketsData);
     }
 }

@@ -15,12 +15,12 @@ public class EntityValidatorTest {
     EntityValidator entityValidator;
 
     @BeforeTest
-    public void setUp(){
+    public void setUp() {
         entityValidator = new EntityValidator();
     }
 
-    @DataProvider (name = "ballPositiveData")
-    public Object[][] createBallPositiveData(){
+    @DataProvider(name = "ballPositiveData")
+    public Object[][] createBallPositiveData() {
         return new Object[][]{
                 {new Ball(ItemColor.RED, BallSize.L, 1.5), true},
                 {new Ball(ItemColor.RED, BallSize.L, 4), false},
@@ -36,8 +36,8 @@ public class EntityValidatorTest {
         assertEquals(actual, expected);
     }
 
-    @DataProvider (name = "ballNegativeData")
-    public Object[][] createBallNegativeData(){
+    @DataProvider(name = "ballNegativeData")
+    public Object[][] createBallNegativeData() {
         return new Object[][]{
                 {new Ball(ItemColor.RED, BallSize.L, 1.5), false},
                 {new Ball(ItemColor.RED, BallSize.L, 4), true},
@@ -48,13 +48,13 @@ public class EntityValidatorTest {
     }
 
     @Test(dataProvider = "ballNegativeData")
-    public void validateBallTestNegative(Ball checkingBall, boolean expected) {
-        boolean actual = entityValidator.validateBall(checkingBall);
+    public void validateBallTestNegative(Ball ball, boolean expected) {
+        boolean actual = entityValidator.validateBall(ball);
         assertNotEquals(actual, expected);
     }
 
-    @DataProvider (name = "basketPositiveData")
-    public Object[][] createBasketPositiveData(){
+    @DataProvider(name = "basketPositiveData")
+    public Object[][] createBasketPositiveData() {
         return new Object[][]{
                 {new Basket(150, 30), true},
                 {new Basket(50, 30), true},
@@ -68,14 +68,14 @@ public class EntityValidatorTest {
         };
     }
 
-    @Test (dataProvider = "basketPositiveData")
-    public void validateBasketTestPositive(Basket checkingBasket, boolean expected) {
-        boolean actual = entityValidator.validateBasket(checkingBasket);
+    @Test(dataProvider = "basketPositiveData")
+    public void validateBasketTestPositive(Basket basket, boolean expected) {
+        boolean actual = entityValidator.validateBasket(basket);
         assertEquals(actual, expected);
     }
 
-    @DataProvider (name = "basketNegativeData")
-    public Object[][] createBasketNegativeData(){
+    @DataProvider(name = "basketNegativeData")
+    public Object[][] createBasketNegativeData() {
         return new Object[][]{
                 {new Basket(150, 30), false},
                 {new Basket(50, 30), false},
@@ -91,9 +91,9 @@ public class EntityValidatorTest {
         };
     }
 
-    @Test (dataProvider = "basketNegativeData")
-    public void validateBasketTestNegative(Basket checkingBasket, boolean expected) {
-        boolean actual = entityValidator.validateBasket(checkingBasket);
+    @Test(dataProvider = "basketNegativeData")
+    public void validateBasketTestNegative(Basket basket, boolean expected) {
+        boolean actual = entityValidator.validateBasket(basket);
         assertNotEquals(actual, expected);
     }
 }
