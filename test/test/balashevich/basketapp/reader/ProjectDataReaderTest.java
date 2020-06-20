@@ -1,6 +1,6 @@
 package test.balashevich.basketapp.reader;
 
-import by.balashevich.basketapp.reader.ItemDataReader;
+import by.balashevich.basketapp.reader.ProjectDataReader;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -10,12 +10,12 @@ import java.util.List;
 
 import static org.testng.Assert.*;
 
-public class ItemDataReaderTest {
-    ItemDataReader itemDataReader;
+public class ProjectDataReaderTest {
+    ProjectDataReader projectDataReader;
 
     @BeforeTest
     public void setUp() {
-        itemDataReader = new ItemDataReader();
+        projectDataReader = new ProjectDataReader();
     }
 
     @DataProvider(name = "readerDataPositive")
@@ -38,7 +38,7 @@ public class ItemDataReaderTest {
 
     @Test(dataProvider = "readerDataPositive")
     public void readAllDataTestPositive(String filename, List<String> expected) {
-        List<String> actualLines = itemDataReader.readAllData(filename);
+        List<String> actualLines = projectDataReader.readAllData(filename);
         assertEquals(actualLines, expected);
     }
 
@@ -61,13 +61,13 @@ public class ItemDataReaderTest {
 
     @Test(dataProvider = "readerDataNegative")
     public void readAllDataTestNegative(String filename, List<String> expected) {
-        List<String> actualLines = itemDataReader.readAllData(filename);
+        List<String> actualLines = projectDataReader.readAllData(filename);
         assertNotEquals(actualLines, expected);
     }
 
     @Test(expectedExceptions = RuntimeException.class)
     public void readAllDataTestException() {
-        itemDataReader.readAllData("out/production/BasketApp/by/" +
+        projectDataReader.readAllData("out/production/BasketApp/by/" +
                 "balashevich/basketapp/creator/BallCreator.class");
     }
 }

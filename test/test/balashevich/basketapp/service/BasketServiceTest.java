@@ -20,6 +20,9 @@ public class BasketServiceTest {
     Basket checkingBasket2;
     Basket checkingBasket3;
     Basket checkingBasket4;
+    List<Ball> checkingBalls1;
+    List<Ball> checkingBalls2;
+    List<Ball> checkingBalls3;
 
     @BeforeTest
     public void setUp() {
@@ -50,6 +53,30 @@ public class BasketServiceTest {
         checkingBasket3.addBall(null);
 
         checkingBasket4 = new Basket(700, 50);
+
+        checkingBalls1 = new ArrayList<>();
+        checkingBalls1.add(new Ball(ItemColor.RED, BallSize.L, 2.1));
+        checkingBalls1.add(new Ball(ItemColor.RED, BallSize.XL, 2.9));
+        checkingBalls1.add(new Ball(ItemColor.GREEN, BallSize.S, 0.6));
+        checkingBalls1.add(new Ball(ItemColor.BROWN, BallSize.M, 1.3));
+        checkingBalls1.add(new Ball(ItemColor.GRAY, BallSize.XL, 2.7));
+        checkingBalls1.add(new Ball(ItemColor.BLACK, BallSize.S, 0.5));
+
+        checkingBalls2 = new ArrayList<>();
+        checkingBalls2.add(new Ball(ItemColor.RED, BallSize.XXL, 2.1));
+        checkingBalls2.add(new Ball(ItemColor.RED, BallSize.XL, 2.9));
+        checkingBalls2.add(new Ball(ItemColor.GREEN, BallSize.XL, 0.6));
+        checkingBalls2.add(new Ball(ItemColor.BROWN, BallSize.L, 1.3));
+        checkingBalls2.add(new Ball(ItemColor.GRAY, BallSize.M, 2.7));
+        checkingBalls2.add(new Ball(ItemColor.BLACK, BallSize.S, 0.5));
+
+        checkingBalls3 = new ArrayList<>();
+        checkingBalls3.add(new Ball(ItemColor.RED, BallSize.XXL, 2.1));
+        checkingBalls3.add(new Ball(ItemColor.RED, BallSize.XL, 1.9));
+        checkingBalls3.add(new Ball(ItemColor.GREEN, BallSize.M, 0.8));
+        checkingBalls3.add(new Ball(ItemColor.BROWN, BallSize.M, 1.3));
+        checkingBalls3.add(new Ball(ItemColor.GRAY, BallSize.XL, 2.7));
+        checkingBalls3.add(null);
     }
 
     @DataProvider(name = "BallWeightDataPositive")
@@ -190,37 +217,12 @@ public class BasketServiceTest {
 
     @DataProvider(name = "loadBallsDataPositive")
     public Object[][] createLoadBallsDataPositive() {
-        Basket emptyBasket1 = new Basket(500, 40);
-        List<Ball> checkingBalls1 = new ArrayList<>();
-        checkingBalls1.add(new Ball(ItemColor.RED, BallSize.L, 2.1));
-        checkingBalls1.add(new Ball(ItemColor.RED, BallSize.XL, 2.9));
-        checkingBalls1.add(new Ball(ItemColor.GREEN, BallSize.S, 0.6));
-        checkingBalls1.add(new Ball(ItemColor.BROWN, BallSize.M, 1.3));
-        checkingBalls1.add(new Ball(ItemColor.GRAY, BallSize.XL, 2.7));
-        checkingBalls1.add(new Ball(ItemColor.BLACK, BallSize.S, 0.5));
-
-        Basket emptyBasket2 = new Basket(100, 40);
-        List<Ball> checkingBalls2 = new ArrayList<>();
-        checkingBalls2.add(new Ball(ItemColor.RED, BallSize.XXL, 2.1));
-        checkingBalls2.add(new Ball(ItemColor.RED, BallSize.XXL, 2.9));
-        checkingBalls2.add(new Ball(ItemColor.GREEN, BallSize.XXL, 0.6));
-        checkingBalls2.add(new Ball(ItemColor.BROWN, BallSize.XXL, 1.3));
-        checkingBalls2.add(new Ball(ItemColor.GRAY, BallSize.XXL, 2.7));
-        checkingBalls2.add(new Ball(ItemColor.BLACK, BallSize.XXL, 0.5));
-
-        Basket emptyBasket3 = new Basket(600, 5);
-        List<Ball> checkingBalls3 = new ArrayList<>();
-        checkingBalls3.add(new Ball(ItemColor.RED, BallSize.XL, 2.1));
-        checkingBalls3.add(new Ball(ItemColor.RED, BallSize.XL, 2.9));
-        checkingBalls3.add(new Ball(ItemColor.GREEN, BallSize.XL, 0.6));
-        checkingBalls3.add(new Ball(ItemColor.BROWN, BallSize.XL, 1.3));
-        checkingBalls3.add(new Ball(ItemColor.GRAY, BallSize.XL, 2.7));
-        checkingBalls3.add(new Ball(ItemColor.BLACK, BallSize.XL, 0.5));
-
         return new Object[][]{
-                {emptyBasket1, checkingBalls1, 6},
-                {emptyBasket2, checkingBalls2, 5},
-                {emptyBasket3, checkingBalls3, 2}
+                {null, checkingBalls1, -1},
+                {new Basket(600, 5), null, -1},
+                {new Basket(500, 40), checkingBalls1, 6},
+                {new Basket(52, 40), checkingBalls2, 3},
+                {new Basket(600, 5), checkingBalls3, 3},
         };
     }
 
@@ -232,37 +234,12 @@ public class BasketServiceTest {
 
     @DataProvider(name = "loadBallsDataNegative")
     public Object[][] createLoadBallsDataNegative() {
-        Basket emptyBasket1 = new Basket(50, 40);
-        List<Ball> checkingBalls1 = new ArrayList<>();
-        checkingBalls1.add(new Ball(ItemColor.RED, BallSize.XL, 2.1));
-        checkingBalls1.add(new Ball(ItemColor.RED, BallSize.XL, 2.9));
-        checkingBalls1.add(new Ball(ItemColor.GREEN, BallSize.XL, 0.6));
-        checkingBalls1.add(new Ball(ItemColor.BROWN, BallSize.XL, 1.3));
-        checkingBalls1.add(new Ball(ItemColor.GRAY, BallSize.XL, 2.7));
-        checkingBalls1.add(new Ball(ItemColor.BLACK, BallSize.XL, 0.5));
-
-        Basket emptyBasket2 = new Basket(100, 5);
-        List<Ball> checkingBalls2 = new ArrayList<>();
-        checkingBalls2.add(new Ball(ItemColor.RED, BallSize.XXL, 3.0));
-        checkingBalls2.add(new Ball(ItemColor.RED, BallSize.XXL, 2.9));
-        checkingBalls2.add(new Ball(ItemColor.GREEN, BallSize.XXL, 0.6));
-        checkingBalls2.add(new Ball(ItemColor.BROWN, BallSize.XXL, 1.3));
-        checkingBalls2.add(new Ball(ItemColor.GRAY, BallSize.XXL, 2.7));
-        checkingBalls2.add(new Ball(ItemColor.BLACK, BallSize.XXL, 0.5));
-
-        Basket emptyBasket3 = new Basket(50, 6);
-        List<Ball> checkingBalls3 = new ArrayList<>();
-        checkingBalls3.add(new Ball(ItemColor.RED, BallSize.XL, 1.5));
-        checkingBalls3.add(new Ball(ItemColor.RED, BallSize.XL, 2.0));
-        checkingBalls3.add(new Ball(ItemColor.GREEN, BallSize.XXL, 2.9));
-        checkingBalls3.add(new Ball(ItemColor.BROWN, BallSize.S, 0.5));
-        checkingBalls3.add(new Ball(ItemColor.GRAY, BallSize.S, 0.5));
-        checkingBalls3.add(new Ball(ItemColor.BLACK, BallSize.S, 0.5));
-
         return new Object[][]{
-                {emptyBasket1, checkingBalls1, 6},
-                {emptyBasket2, checkingBalls2, 2},
-                {emptyBasket3, checkingBalls3, 2}
+                {null, checkingBalls1, 0},
+                {new Basket(600, 5), null, 0},
+                {new Basket(500, 40), checkingBalls1, 5},
+                {new Basket(52, 40), checkingBalls2, 2},
+                {new Basket(600, 5), checkingBalls3, 4},
         };
     }
 

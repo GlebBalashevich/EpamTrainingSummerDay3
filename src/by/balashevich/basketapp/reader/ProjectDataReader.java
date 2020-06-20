@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class ItemDataReader {
+public class ProjectDataReader {
     private static final String DEFAULT_PATH = "input/inputData.txt";
 
     public List<String> readAllData(String filename) {

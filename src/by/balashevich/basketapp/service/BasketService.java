@@ -93,12 +93,13 @@ public class BasketService {
         double availableVolume;
         double availablePayload;
 
-        if (basket != null) {
+        if (basket != null && ballsArray != null) {
             availableVolume = calculateBasketFreeVolume(basket);
             availablePayload = calculateBasketFreePayload(basket);
 
             for (Ball ball : ballsArray) {
                 if (ball != null) {
+
                     if (ball.getWeight() <= availablePayload) {
                         if (ball.getSize().getVolume() <= availableVolume) {
                             basket.addBall(ball);
@@ -109,6 +110,8 @@ public class BasketService {
                     }
                 }
             }
+        } else {
+            numberPlacedBalls = -1;
         }
 
         return numberPlacedBalls;
