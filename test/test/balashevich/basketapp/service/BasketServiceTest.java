@@ -1,4 +1,4 @@
-package test.by.balashevich.basketapp.service;
+package test.balashevich.basketapp.service;
 
 import by.balashevich.basketapp.entity.Ball;
 import by.balashevich.basketapp.entity.BallSize;

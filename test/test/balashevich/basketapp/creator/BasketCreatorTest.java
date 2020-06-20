@@ -1,4 +1,4 @@
-package test.by.balashevich.basketapp.creator;
+package test.balashevich.basketapp.creator;
 
 import by.balashevich.basketapp.creator.BasketCreator;
 import by.balashevich.basketapp.entity.Basket;

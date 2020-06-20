@@ -1,4 +1,4 @@
-package test.by.balashevich.basketapp.parser;
+package test.balashevich.basketapp.parser;
 
 import by.balashevich.basketapp.entity.Ball;
 import by.balashevich.basketapp.entity.BallSize;

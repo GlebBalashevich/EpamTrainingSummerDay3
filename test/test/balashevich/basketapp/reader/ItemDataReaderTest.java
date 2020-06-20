@@ -1,4 +1,4 @@
-package test.by.balashevich.basketapp.reader;
+package test.balashevich.basketapp.reader;
 
 import by.balashevich.basketapp.reader.ItemDataReader;
 import org.testng.annotations.BeforeTest;
